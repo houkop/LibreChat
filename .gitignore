@@ -78,6 +78,7 @@ junit.xml
 # docker override file
 docker-compose.override.yaml
 docker-compose.override.yml
+deploy-compose.override.yml
 
 # meilisearch
 meilisearch
@@ -89,3 +90,5 @@ auth.json
 /images
 
 !client/src/components/Nav/SettingsTabs/Data/
+
+client/nginx.conf
