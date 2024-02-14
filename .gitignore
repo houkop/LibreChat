@@ -93,3 +93,5 @@ auth.json
 
 !client/src/components/Nav/SettingsTabs/Data/
 
+# User uploads
+uploads/
