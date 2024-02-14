@@ -52,6 +52,8 @@ bower_components/
 librechat.yaml
 
 # Environment
+client/nginx.conf
+client/dhparam
 .npmrc
 .env*
 my.secrets
@@ -91,4 +93,3 @@ auth.json
 
 !client/src/components/Nav/SettingsTabs/Data/
 
-client/nginx.conf
