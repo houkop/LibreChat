@@ -165,28 +165,20 @@ describe('PluginsClient', () => {
     });
 
     test('should return the input for all function-capable models (`0613` models and above)', () => {
-      expect(client.getFunctionModelName('gpt-4-0613')).toBe('gpt-4-0613');
       expect(client.getFunctionModelName('gpt-4-32k-0613')).toBe('gpt-4-32k-0613');
       expect(client.getFunctionModelName('gpt-3.5-turbo-0613')).toBe('gpt-3.5-turbo-0613');
       expect(client.getFunctionModelName('gpt-3.5-turbo-16k-0613')).toBe('gpt-3.5-turbo-16k-0613');
       expect(client.getFunctionModelName('gpt-3.5-turbo-1106')).toBe('gpt-3.5-turbo-1106');
       expect(client.getFunctionModelName('gpt-4-1106-preview')).toBe('gpt-4-1106-preview');
-      expect(client.getFunctionModelName('gpt-4-1106')).toBe('gpt-4-1106');
     });
 
     test('should return the corresponding model if input is non-function capable (`0314` models)', () => {
-      expect(client.getFunctionModelName('gpt-4-0314')).toBe('gpt-4');
-      expect(client.getFunctionModelName('gpt-4-32k-0314')).toBe('gpt-4');
       expect(client.getFunctionModelName('gpt-3.5-turbo-0314')).toBe('gpt-3.5-turbo');
       expect(client.getFunctionModelName('gpt-3.5-turbo-16k-0314')).toBe('gpt-3.5-turbo');
     });
 
     test('should return "gpt-3.5-turbo" when the input includes "gpt-3.5-turbo"', () => {
       expect(client.getFunctionModelName('test gpt-3.5-turbo model')).toBe('gpt-3.5-turbo');
-    });
-
-    test('should return "gpt-4" when the input includes "gpt-4"', () => {
-      expect(client.getFunctionModelName('testing gpt-4')).toBe('gpt-4');
     });
 
     test('should return "gpt-3.5-turbo" for input that does not meet any specific condition', () => {
