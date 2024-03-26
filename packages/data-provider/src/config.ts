@@ -79,6 +79,7 @@ export type TValidatedAzureConfig = {
 
 export enum Capabilities {
   code_interpreter = 'code_interpreter',
+  image_vision = 'image_vision',
   retrieval = 'retrieval',
   actions = 'actions',
   tools = 'tools',
@@ -97,6 +98,7 @@ export const assistantEndpointSchema = z.object({
     .optional()
     .default([
       Capabilities.code_interpreter,
+      Capabilities.image_vision,
       Capabilities.retrieval,
       Capabilities.actions,
       Capabilities.tools,
@@ -522,9 +524,11 @@ export enum Constants {
 }
 
 export const defaultOrderQuery: {
-  order: 'asc';
+  order: 'desc';
+  limit: 100;
 } = {
-  order: 'asc',
+  order: 'desc',
+  limit: 100,
 };
 
 export enum AssistantStreamEvents {
