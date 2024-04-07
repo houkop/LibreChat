@@ -18,6 +18,15 @@ import type { LucideIcon } from 'lucide-react';
 
 export type GenericSetter<T> = (value: T | ((currentValue: T) => T)) => void;
 
+export type LastSelectedModels = Record<EModelEndpoint, string>;
+
+export enum IconContext {
+  landing = 'landing',
+  menuItem = 'menu-item',
+  nav = 'nav',
+  message = 'message',
+}
+
 export type NavLink = {
   title: string;
   label?: string;

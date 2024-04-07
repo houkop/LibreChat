@@ -97,3 +97,6 @@ auth.json
 
 # User uploads
 uploads/
+
+# owner
+release/
