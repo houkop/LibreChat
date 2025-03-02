@@ -4,9 +4,15 @@ import {
   Registration,
   RequestPasswordReset,
   ResetPassword,
+  VerifyEmail,
   ApiErrorWatcher,
+  TwoFactorScreen,
 } from '~/components/Auth';
 import { AuthContextProvider } from '~/hooks/AuthContext';
+import RouteErrorBoundary from './RouteErrorBoundary';
+import StartupLayout from './Layouts/Startup';
+import LoginLayout from './Layouts/Login';
+import dashboardRoutes from './Dashboard';
 import ShareRoute from './ShareRoute';
 import ChatRoute from './ChatRoute';
 import Search from './Search';
@@ -21,28 +27,53 @@ const AuthLayout = () => (
 
 export const router = createBrowserRouter([
   {
-    path: 'register',
-    element: <Registration />,
-  },
-  {
-    path: 'forgot-password',
-    element: <RequestPasswordReset />,
-  },
-  {
-    path: 'reset-password',
-    element: <ResetPassword />,
-  },
-  {
     path: 'share/:shareId',
     element: <ShareRoute />,
+    errorElement: <RouteErrorBoundary />,
+  },
+  {
+    path: '/',
+    element: <StartupLayout />,
+    errorElement: <RouteErrorBoundary />,
+    children: [
+      {
+        path: 'register',
+        element: <Registration />,
+      },
+      {
+        path: 'forgot-password',
+        element: <RequestPasswordReset />,
+      },
+      {
+        path: 'reset-password',
+        element: <ResetPassword />,
+      },
+    ],
+  },
+  {
+    path: 'verify',
+    element: <VerifyEmail />,
+    errorElement: <RouteErrorBoundary />,
   },
   {
     element: <AuthLayout />,
+    errorElement: <RouteErrorBoundary />,
     children: [
       {
-        path: 'login',
-        element: <Login />,
+        path: '/',
+        element: <LoginLayout />,
+        children: [
+          {
+            path: 'login',
+            element: <Login />,
+          },
+          {
+            path: 'login/2fa',
+            element: <TwoFactorScreen />,
+          },
+        ],
       },
+      dashboardRoutes,
       {
         path: '/',
         element: <Root />,
